@@ -1,0 +1,194 @@
+@startuml
+entity admins {
+  id: BIGINT <<PK>>
+  --
+  registered_at: DATETIME
+  created_at: DATETIME
+  updated_at: DATETIME
+}
+
+entity admin_access_tokens {
+  id: BIGINT <<PK>>
+  --
+  admin_id: BIGINT <<FK>>
+  token: VARCHAR(191) <<index>>
+  generated_at: DATETIME <<index>>
+  expired_at: DATETIME <<index>>
+  created_at: DATETIME
+  updated_at: DATETIME
+}
+
+entity admin_usernames {
+  id: BIGINT <<PK>>
+  --
+  username: VARCHAR(191)
+  saved_at: DATETIME
+  created_at: DATETIME
+  updated_at: DATETIME
+}
+
+entity admin_usernames_bk {
+  id: BIGINT <<PK>>
+  --
+  username: VARCHAR(191)
+  saved_at: DATETIME
+  created_at: DATETIME
+  updated_at: DATETIME
+}
+
+entity admin_secrets {
+  id: BIGINT <<PK>>
+  --
+  admin_id: BIGINT <<FK>>
+  email: VARCHAR(191)
+  saved_at: DATETIME
+  created_at: DATETIME
+  updated_at: DATETIME
+}
+
+entity admin_secrets_bk {
+  id: BIGINT <<PK>>
+  --
+  admin_id: BIGINT <<FK>>
+  email: VARCHAR(191)
+  saved_at: DATETIME
+  created_at: DATETIME
+  updated_at: DATETIME
+}
+
+entity admin_password_hashes {
+  id: BIGINT <<PK>>
+  --
+  password_hash: VARCHAR(191)
+  saved_at: DATETIME
+  created_at: DATETIME
+  updated_at: DATETIME
+}
+
+entity admin_password_hashes_bk {
+  id: BIGINT <<PK>>
+  --
+  password_hash: VARCHAR(191)
+  saved_at: DATETIME
+  created_at: DATETIME
+  updated_at: DATETIME
+}
+
+entity articles {
+  id: BIGINT <<PK>>
+  --
+  title: VARCHAR(191)
+  content: TEXT
+  posted_at: DATETIME
+  saved_at: DATETIME
+  created_at: DATETIME
+  updated_at: DATETIME
+}
+
+entity articles_bk {
+  id: BIGINT <<PK>>
+  --
+  title: VARCHAR(191)
+  content: TEXT
+  posted_at: DATETIME
+  saved_at: DATETIME
+  created_at: DATETIME
+  updated_at: DATETIME
+}
+
+entity article_thumbnails {
+  id: BIGIN <<PK>>
+  --
+  article_id: BIGINT <<FK>>
+  image_url: TEXT
+  saved_at: DATETIME
+  created_at: DATETIME
+  updated_at: DATETIME
+}
+
+entity article_thumbnails_bk {
+  id: BIGIN <<PK>>
+  --
+  article_id: BIGINT <<FK>>
+  image_url: TEXT
+  saved_at: DATETIME
+  created_at: DATETIME
+  updated_at: DATETIME
+}
+
+entity article_tags {
+  id: BIGINT <<PK>>
+  --
+  article_id: BIGINT <<FK>>
+  tag_id: BIGINT <<FK>>
+  saved_at: DATETIME
+  created_at: DATETIME
+  updated_at: DATETIME
+}
+
+entity article_statuses {
+  id: INT <<PK>>
+  --
+  name: VARCHAR(191)
+  description: VARCHAR(191)
+  saved_at: DATETIME
+  created_at: DATETIME
+  updated_at: DATETIME
+}
+
+entity article_latest_statuses {
+  id: BIGINT <<PK>>
+  --
+  article_id: BIGINT <<FK>>
+  article_status_id: INT <<FK>>
+  saved_at: DATETIME
+  created_at: DATETIME
+  updated_at: DATETIME
+}
+
+entity article_status_phases {
+  id: BIGINT <<PK>>
+  --
+  article_id: BIGINT <<FK>>
+  article_status_id: INT <<FK>>
+  saved_at: DATETIME
+  created_at: DATETIME
+  updated_at: DATETIME
+}
+
+entity tags {
+  id: BIGINT <<PK>>
+  --
+  name: VARHAR(191)
+  saved_at: DATETIME
+  created_at: DATETIME
+  updated_at: DATETIME
+}
+
+' Admin relationships
+admins ||--o{ admin_access_tokens : has
+admins ||--|| admin_secrets : has
+admins ||--|| admin_usernames : has
+admins ||--|| admin_password_hashes : has
+
+admins ||--|{ admin_usernames_bk : backup
+admins ||--|{ admin_secrets_bk : backup
+admins ||--|{ admin_password_hashes_bk : backup
+
+' Article relationships
+articles ||--|| article_thumbnails : has
+articles ||--o{ article_tags : has
+articles ||--|| article_latest_statuses : has
+
+articles ||--|{ article_status_phases : backup
+articles ||--|{ articles_bk : backup
+articles ||--|{ article_thumbnails_bk : backup
+
+' Tag relationships
+tags ||--o{ article_tags : has
+
+' Status relationships
+article_statuses ||--o{ article_latest_statuses : has
+article_statuses ||--o{ article_status_phases : has
+
+@enduml
