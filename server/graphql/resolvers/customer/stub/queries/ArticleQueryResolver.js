@@ -27,7 +27,7 @@ export default class ArticleQueryResolver extends BaseQueryResolver {
         {
           tagId: 10011,
           name: 'タグ1',
-        }
+        },
       ],
     }
   }
