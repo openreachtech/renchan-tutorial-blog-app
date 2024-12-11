@@ -32,14 +32,7 @@ export default class Admin extends RenchanModel {
   static associate () {
     super.associate?.()
 
-    this.hasOne(this._.AdminSecret)
-    this.hasOne(this._.AdminPasswordHash)
-
-    this.hasMany(this._.AdminRoleAssignment)
-
-    this.belongsToMany(this._.AdminRole, {
-      through: this._.AdminRoleAssignment,
-    })
+    // noop
   }
 
   /** @override */
