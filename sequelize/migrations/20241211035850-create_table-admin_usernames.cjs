@@ -1,7 +1,5 @@
 'use strict'
 
-import Admin from '../models/Admin'
-
 const MigrationAttributeFactory = require('@openreachtech/renchan-sequelize/lib/tools/MigrationAttributeFactory.cjs')
 
 const TABLE_NAME = 'admin_usernames'
