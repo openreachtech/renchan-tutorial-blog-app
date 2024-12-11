@@ -51,7 +51,7 @@ module.exports = {
           name: [
             TABLE_NAME,
             COLUMN_NAME.TAG_ID,
-            'index'
+            'index',
           ].join('_'),
         }
       ))

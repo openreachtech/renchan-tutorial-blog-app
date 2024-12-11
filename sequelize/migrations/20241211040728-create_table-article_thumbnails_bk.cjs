@@ -44,7 +44,7 @@ module.exports = {
           name: [
             TABLE_NAME,
             COLUMN_NAME.ARTICLE_ID,
-            'index'
+            'index',
           ].join('_'),
         }
       ))
