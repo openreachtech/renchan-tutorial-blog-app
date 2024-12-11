@@ -21,6 +21,7 @@ entity admin_access_tokens {
 entity admin_usernames {
   id: BIGINT <<PK>>
   --
+  admin_id: BIGINT <<FK>>
   username: VARCHAR(191)
   saved_at: DATETIME
   created_at: DATETIME
@@ -30,6 +31,7 @@ entity admin_usernames {
 entity admin_usernames_bk {
   id: BIGINT <<PK>>
   --
+  admin_id: BIGINT <<FK>>
   username: VARCHAR(191)
   saved_at: DATETIME
   created_at: DATETIME
@@ -59,6 +61,7 @@ entity admin_secrets_bk {
 entity admin_password_hashes {
   id: BIGINT <<PK>>
   --
+  admin_id: BIGINT <<FK>>
   password_hash: VARCHAR(191)
   saved_at: DATETIME
   created_at: DATETIME
@@ -68,6 +71,7 @@ entity admin_password_hashes {
 entity admin_password_hashes_bk {
   id: BIGINT <<PK>>
   --
+  admin_id: BIGINT <<FK>>
   password_hash: VARCHAR(191)
   saved_at: DATETIME
   created_at: DATETIME

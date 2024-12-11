@@ -4,6 +4,7 @@ const MigrationAttributeFactory = require('@openreachtech/renchan-sequelize/lib/
 
 const TABLE_NAME = 'admin_password_hashes'
 const COLUMN_NAME = {
+  ADMIN_ID: 'admin_id',
   PASSWORD_HASH: 'password_hash',
   SAVED_AT: 'saved_at',
 }
@@ -18,6 +19,11 @@ module.exports = {
     return queryInterface.createTable(TABLE_NAME, {
       ...factory.ID_BIGINT,
 
+      AdminId: {
+        type: Sequelize.BIGINT,
+        field: COLUMN_NAME.ADMIN_ID,
+        allowNull: false,
+      },
       passwordHash: {
         type: Sequelize.STRING(191),
         field: COLUMN_NAME.PASSWORD_HASH,
@@ -31,6 +37,17 @@ module.exports = {
 
       ...factory.TIMESTAMPS,
     })
+      .then(() => queryInterface.addIndex(
+        TABLE_NAME,
+        [COLUMN_NAME.ADMIN_ID],
+        {
+          name: [
+            TABLE_NAME,
+            COLUMN_NAME.ADMIN_ID,
+            'index',
+          ].join('_'),
+        }
+      ))
   },
 
   async down (
