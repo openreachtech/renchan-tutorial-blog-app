@@ -237,7 +237,6 @@ const articleTags = [
   { id: 50004, article_id: 50003, tag_id: 50003, saved_at: new Date('2024-04-03T09:00:00Z') },
   { id: 50005, article_id: 50004, tag_id: 50001, saved_at: new Date('2024-04-03T14:30:00Z') },
   { id: 50006, article_id: 50004, tag_id: 50004, saved_at: new Date('2024-04-03T14:30:00Z') },
-  { id: 50007, article_id: 50004, tag_id: 50004, saved_at: new Date('2024-04-03T14:30:00Z') },
   { id: 50008, article_id: 50005, tag_id: 50005, saved_at: new Date('2024-01-01T00:00:00Z') },
   { id: 50009, article_id: 50006, tag_id: 50001, saved_at: new Date('2024-04-03T15:45:00Z') },
   { id: 50010, article_id: 50006, tag_id: 50006, saved_at: new Date('2024-04-03T15:45:00Z') },
