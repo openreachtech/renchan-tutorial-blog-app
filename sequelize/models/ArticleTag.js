@@ -83,6 +83,29 @@ export default class ArticleTag extends RenchanModel {
    */
   static defineSubqueries () {
     super.defineSubqueries?.()
-    // noop
+
+    const attributes = this.getAttributes()
+    const ArticleIdField = attributes.ArticleId.field
+    const TagIdField = attributes.TagId.field
+
+    this.addSubquery({
+      name: '?TagIds.ArticleId',
+      generator: ({
+        TagIds,
+      }) => {
+        const attributes = [
+          ArticleIdField,
+        ]
+
+        const whereClause = {
+          [TagIdField]: TagIds,
+        }
+
+        return {
+          attributes,
+          where: whereClause,
+        }
+      },
+    })
   }
 }

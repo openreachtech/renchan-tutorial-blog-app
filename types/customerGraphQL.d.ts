@@ -54,7 +54,6 @@ declare global {
       thumbnailUrl: string
       title: string
       postedAt: DateTime
-      savedAt: DateTime
       tags: Array<Tag>
     }
 
@@ -62,6 +61,7 @@ declare global {
       limit: number
       offset: number
       sort?: Sort
+      totalRecords: number
     }
 
     interface SignInResult {
