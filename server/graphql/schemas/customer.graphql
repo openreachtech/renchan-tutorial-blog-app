@@ -31,7 +31,7 @@ type ListArticle {
   articleId: Int!
   thumbnailUrl: String!
   title: String!
-  postedAt: String!
+  postedAt: DateTime!
   tags: [Tag!]!
 }
 
@@ -39,6 +39,7 @@ type Pagination {
   limit: Int!
   offset: Int!
   sort: Sort
+  totalRecords: Int!
 }
 
 type Sort {
