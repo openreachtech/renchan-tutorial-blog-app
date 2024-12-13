@@ -84,7 +84,30 @@ export default class ArticleLatestStatus extends RenchanModel {
    */
   static defineSubqueries () {
     super.defineSubqueries?.()
-    // noop
+
+    const attributes = this.getAttributes()
+    const ArticleIdField = attributes.ArticleId.field
+    const ArticleStatusIdField = attributes.ArticleStatusId.field
+
+    this.addSubquery({
+      name: '?ArtileStatusId.ArticleId',
+      generator: ({
+        ArtileStatusId,
+      }) => {
+        const attributes = [
+          ArticleIdField,
+        ]
+
+        const whereClause = {
+          [ArticleStatusIdField]: ArtileStatusId,
+        }
+
+        return {
+          attributes,
+          where: whereClause,
+        }
+      },
+    })
   }
 
   /**
