@@ -1,10 +1,10 @@
-import '../../../../../../sequelize/_'
+import '../../../../../../sequelize/_.js'
 
-import Article from '../../../../../../sequelize/models/Article'
-import ArticleThumbnail from '../../../../../../sequelize/models/ArticleThumbnail'
-import ArticleTag from '../../../../../../sequelize/models/ArticleTag'
-import Tag from '../../../../../../sequelize/models/Tag'
-import ArticleQueryResolver from '../../../../../../server/graphql/resolvers/customer/actual/queries/ArticleQueryResolver'
+import Article from '../../../../../../sequelize/models/Article.js'
+import ArticleThumbnail from '../../../../../../sequelize/models/ArticleThumbnail.js'
+import ArticleTag from '../../../../../../sequelize/models/ArticleTag.js'
+import Tag from '../../../../../../sequelize/models/Tag.js'
+import ArticleQueryResolver from '../../../../../../server/graphql/resolvers/customer/actual/queries/ArticleQueryResolver.js'
 
 describe('ArticleQueryResolver', () => {
   describe('#resolve', () => {
