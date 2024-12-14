@@ -21,7 +21,7 @@ export default class ArticleStatusesQueryResolver extends BaseQueryResolver {
   /**
    * Resolve article statuses query
    *
-   * @param {Object} params
+   * @param {object} params
    * @param {renchanMiddleware.AdminContext} context
    * @returns {Promise<graphqlAdmin.ArticleStatusesResult>}
    */
