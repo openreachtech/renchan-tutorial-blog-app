@@ -21,7 +21,7 @@ export default class ArticleStatusesQueryResolver extends BaseQueryResolver {
   /**
    * Resolve article statuses query
    *
-   * @param {object} params
+   * @param {Object} params
    * @param {renchanMiddleware.AdminContext} context
    * @returns {Promise<graphqlAdmin.ArticleStatusesResult>}
    */
@@ -30,6 +30,10 @@ export default class ArticleStatusesQueryResolver extends BaseQueryResolver {
     context
   ) {
     const statuses = await this.findStatuses()
+
+    if (!statuses || statuses.length === 0) {
+      throw this.errorHash.StatusesNotFound.create()
+    }
 
     return this.formatResponse({
       statuses,
@@ -64,6 +68,8 @@ export default class ArticleStatusesQueryResolver extends BaseQueryResolver {
       statuses: statuses.map(status => ({
         statusId: status.id,
         name: status.name,
+        description: status.description,
+        savedAt: status.savedAt.toISOString(),
       })),
     }
   }
