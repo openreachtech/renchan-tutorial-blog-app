@@ -44,7 +44,7 @@ declare global {
       pagination: Pagination
     }
 
-    interface ArtcleStatusesResult {
+    interface ArticleStatusesResult {
       statuses: Array<Status>
     }
 
