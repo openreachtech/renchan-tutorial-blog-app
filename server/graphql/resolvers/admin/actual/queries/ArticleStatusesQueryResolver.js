@@ -68,8 +68,6 @@ export default class ArticleStatusesQueryResolver extends BaseQueryResolver {
       statuses: statuses.map(status => ({
         statusId: status.id,
         name: status.name,
-        description: status.description,
-        savedAt: status.savedAt.toISOString(),
       })),
     }
   }
