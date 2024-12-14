@@ -1,6 +1,6 @@
-import '../../../../../../sequelize/_'
+import '../../../../../../sequelize/_.js'
 
-import AdminsQueryResolver from '../../../../../../server/graphql/resolvers/admin/actual/queries/AdminsQueryResolver'
+import AdminsQueryResolver from '../../../../../../server/graphql/resolvers/admin/actual/queries/AdminsQueryResolver.js'
 
 describe('AdminsQueryResolver', () => {
   describe('#resolve', () => {

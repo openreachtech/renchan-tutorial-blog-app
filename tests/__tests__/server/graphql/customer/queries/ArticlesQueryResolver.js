@@ -1,4 +1,4 @@
-import '../../../../../../sequelize/_'
+import '../../../../../../sequelize/_.js'
 
 import ArticlesQueryResolver from '../../../../../../server/graphql/resolvers/customer/actual/queries/ArticlesQueryResolver'
 
