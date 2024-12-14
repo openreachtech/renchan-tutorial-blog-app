@@ -211,15 +211,19 @@ export default class ArticlesQueryResolver extends BaseQueryResolver {
   async countArticles ({
     tagIds,
   }) {
+    const articleIdSubquery = ArticleTag.subquery(
+      '?TagIds.ArticleId',
+      {
+        TagIds: tagIds,
+      }
+    )
+
     return Article.count({
-      include: [
-        {
-          model: ArticleTag,
-          where: {
-            TagId: tagIds,
-          },
+      where: {
+        id: {
+          [Op.in]: articleIdSubquery,
         },
-      ],
+      },
     })
   }
 

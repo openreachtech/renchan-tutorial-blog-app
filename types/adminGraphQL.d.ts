@@ -1,7 +1,7 @@
 export {}
 
 declare global {
-  namespace graphqlCustomer {
+  namespace graphqlAdmin {
     // Scalar types
     type DateTime = Date
     type Upload = File
@@ -44,7 +44,7 @@ declare global {
       pagination: Pagination
     }
 
-    interface ArtcleStatusesResult {
+    interface ArticleStatusesResult {
       statuses: Array<Status>
     }
 
@@ -78,6 +78,7 @@ declare global {
       limit: number
       offset: number
       sort?: Sort
+      totalRecords: number
     }
 
     interface SignInResult {
