@@ -15,6 +15,22 @@ const admins = [
   { id: 50010, registered_at: new Date('2024-04-10T12:00:00Z') },
 ]
 
+/*
+ * for password hash
+ */
+const customerPasswordHashesSeeds = [
+  { id: 50100, admin_id: 50001, password_hash: '$2b$10$20f9HoTS4bXyrItXzHiEDOas4sGpiRK4bofeYGhCNhGiub3HrkPV6', saved_at: new Date('2024-01-01T00:00:01.001Z') },
+  { id: 50101, admin_id: 50002, password_hash: '$2b$10$20f9HoTS4bXyrItXzHiEDOas4sGpiRK4bofeYGhCNhGiub3HrkPV6', saved_at: new Date('2024-01-02T00:00:02.002Z') },
+  { id: 50102, admin_id: 50003, password_hash: '$2b$10$20f9HoTS4bXyrItXzHiEDOas4sGpiRK4bofeYGhCNhGiub3HrkPV6', saved_at: new Date('2024-01-03T00:00:03.003Z') },
+  { id: 50103, admin_id: 50004, password_hash: '$2b$10$20f9HoTS4bXyrItXzHiEDOas4sGpiRK4bofeYGhCNhGiub3HrkPV6', saved_at: new Date('2024-01-04T00:00:04.004Z') },
+  { id: 50104, admin_id: 50005, password_hash: '$2b$10$20f9HoTS4bXyrItXzHiEDOas4sGpiRK4bofeYGhCNhGiub3HrkPV6', saved_at: new Date('2024-01-05T00:00:05.005Z') },
+  { id: 50105, admin_id: 50006, password_hash: '$2b$10$20f9HoTS4bXyrItXzHiEDOas4sGpiRK4bofeYGhCNhGiub3HrkPV6', saved_at: new Date('2024-01-06T00:00:06.006Z') },
+  { id: 50106, admin_id: 50007, password_hash: '$2b$10$20f9HoTS4bXyrItXzHiEDOas4sGpiRK4bofeYGhCNhGiub3HrkPV6', saved_at: new Date('2024-01-07T00:00:07.007Z') },
+  { id: 50107, admin_id: 50008, password_hash: '$2b$10$20f9HoTS4bXyrItXzHiEDOas4sGpiRK4bofeYGhCNhGiub3HrkPV6', saved_at: new Date('2024-01-08T00:00:08.008Z') },
+  { id: 50108, admin_id: 50009, password_hash: '$2b$10$20f9HoTS4bXyrItXzHiEDOas4sGpiRK4bofeYGhCNhGiub3HrkPV6', saved_at: new Date('2024-01-09T00:00:09.009Z') },
+  { id: 50109, admin_id: 50010, password_hash: '$2b$10$20f9HoTS4bXyrItXzHiEDOas4sGpiRK4bofeYGhCNhGiub3HrkPV6', saved_at: new Date('2024-01-10T00:00:10.010Z') },
+]
+
 const adminUsernames = [
   { id: 50001, admin_id: 50001, username: 'admin_super', saved_at: new Date('2024-01-01T00:00:00Z') },
   { id: 50002, admin_id: 50002, username: 'admin_content', saved_at: new Date('2024-01-02T10:00:00Z') },
@@ -259,6 +275,7 @@ const articleThumbnails = [
 
 const TABLE_NAME_ADMINS = 'admins'
 const TABLE_NAME_ADMIN_USERNAMES = 'admin_usernames'
+const TABLE_NAME_ADMIN_PASSWORD_HASHES = 'admin_password_hashes'
 const TABLE_NAME_ADMIN_SECRETS = 'admin_secrets'
 const TABLE_NAME_ADMIN_ACCESS_TOKENS = 'admin_access_tokens'
 const TABLE_NAME_ARTICLE_STATUSES = 'article_statuses'
@@ -280,11 +297,13 @@ module.exports = {
     await queryInterface.bulkInsert(TABLE_NAME_TAGS, TimestampSeedsSupplier.supplyAll(tags), {})
     await queryInterface.bulkInsert(TABLE_NAME_ARTICLE_TAGS, TimestampSeedsSupplier.supplyAll(articleTags), {})
     await queryInterface.bulkInsert(TABLE_NAME_ARTICLE_THUMBNAILS, TimestampSeedsSupplier.supplyAll(articleThumbnails), {})
+    await queryInterface.bulkInsert(TABLE_NAME_ADMIN_PASSWORD_HASHES, TimestampSeedsSupplier.supplyAll(customerPasswordHashesSeeds), {})
   },
 
   down: async (queryInterface, Sequelize) => {
     const adminIds = admins.map(admin => admin.id)
     const adminUsernameIds = adminUsernames.map(username => username.id)
+    const customerPasswordHashesSeeds = adminUsernames.map(username => username.id)
     const adminSecretIds = adminSecrets.map(secret => secret.id)
     const adminAccessTokenIds = adminAccessTokens.map(token => token.id)
     const articleStatusIds = articleStatuses.map(status => status.id)
@@ -304,5 +323,6 @@ module.exports = {
     await queryInterface.bulkDelete(TABLE_NAME_ADMIN_SECRETS, { id: adminSecretIds }, {})
     await queryInterface.bulkDelete(TABLE_NAME_ADMIN_USERNAMES, { id: adminUsernameIds }, {})
     await queryInterface.bulkDelete(TABLE_NAME_ADMINS, { id: adminIds }, {})
+    await queryInterface.bulkDelete(TABLE_NAME_ADMIN_PASSWORD_HASHES, { id: customerPasswordHashesSeeds }, {})
   },
 }
