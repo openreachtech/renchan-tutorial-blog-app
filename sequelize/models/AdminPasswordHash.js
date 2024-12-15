@@ -3,6 +3,9 @@ import {
   ModelAttributeFactory,
   BackupMixinModel,
 } from '@openreachtech/renchan-sequelize'
+import {
+  Encipher,
+} from '@openreachtech/renchan-tools'
 
 /**
  * AdminPasswordHash model
@@ -104,5 +107,33 @@ export default class AdminPasswordHash extends RenchanModel {
    */
   static get BackupModel () {
     return this._.AdminPasswordHashBk
+  }
+
+  /**
+   * Verifies password.
+   *
+   * @param {{
+   *   password: string
+   * }} params - Parameters.
+   * @returns {Promise<boolean>}
+   */
+  async verifyPassword ({
+    password,
+  }) {
+    /** @type {string} */
+    const passwordHash = /** @type {*} */ (
+      this.get('passwordHash')
+    )
+
+    if (!passwordHash) {
+      return false
+    }
+
+    const encipher = Encipher.create()
+
+    return encipher.compare(
+      password,
+      passwordHash
+    )
   }
 }
