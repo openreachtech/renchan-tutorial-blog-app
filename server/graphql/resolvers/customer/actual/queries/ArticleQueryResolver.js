@@ -33,9 +33,9 @@ export default class ArticleQueryResolver extends BaseQueryResolver {
    * Resolve article query
    *
    * @param {{
-   *   input: graphqlCustomer.ArticleInput
+   *   input: server.graphql.customer.ArticleInput
    * }} params
-   * @returns {Promise<graphqlCustomer.Article>}
+   * @returns {Promise<server.graphql.customer.Article>}
    */
   async resolve ({
     input: {
@@ -106,7 +106,7 @@ export default class ArticleQueryResolver extends BaseQueryResolver {
    * @param {{
    *   article: model.ArticleWithAssociationsEntity
    * }} params
-   * @returns {graphqlCustomer.Article}
+   * @returns {server.graphql.customer.Article}
    */
   formatResponse ({
     article,

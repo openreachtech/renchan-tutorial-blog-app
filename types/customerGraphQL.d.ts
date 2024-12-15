@@ -1,7 +1,7 @@
 export {}
 
 declare global {
-  namespace graphqlCustomer {
+  namespace server.graphql.customer {
     // Scalar types
     type DateTime = Date
     type Upload = File

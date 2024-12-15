@@ -1,7 +1,7 @@
 export {}
 
 declare global {
-  namespace renchanMiddleware {
+  namespace server.graphql.context {
     interface AdminContext {
       admin: model.Admin
     }
