@@ -32,11 +32,11 @@ export default class AdminsQueryResolver extends BaseQueryResolver {
    *
    * @param {{
    *   input: {
-   *     pagination: graphqlAdmin.PaginationInput
+   *     pagination: server.graphql.admin.PaginationInput
    *   }
    * }} params
-   * @param {renchanMiddleware.AdminContext} context
-   * @returns {Promise<graphqlAdmin.AdminsResult>}
+   * @param {server.graphql.context.AdminContext} context
+   * @returns {Promise<server.graphql.admin.AdminsResult>}
    */
   async resolve (
     {
@@ -66,7 +66,7 @@ export default class AdminsQueryResolver extends BaseQueryResolver {
   /**
    * Validate pagination input
    *
-   * @param {graphqlAdmin.PaginationInput} pagination
+   * @param {server.graphql.admin.PaginationInput} pagination
    * @returns {boolean}
    */
   isPaginationValid ({
@@ -100,7 +100,7 @@ export default class AdminsQueryResolver extends BaseQueryResolver {
    * Find admins based on pagination
    *
    * @param {{
-   *   pagination: graphqlAdmin.PaginationInput
+   *   pagination: server.graphql.admin.PaginationInput
    * }} params
    * @returns {Promise<Array<AdminEntity>>}
    */
@@ -141,10 +141,10 @@ export default class AdminsQueryResolver extends BaseQueryResolver {
    *
    * @param {{
    *   admins: Array<AdminEntity>,
-   *   pagination: graphqlAdmin.PaginationInput,
+   *   pagination: server.graphql.admin.PaginationInput,
    *   totalRecords: number
    * }} params
-   * @returns {graphqlAdmin.AdminsResult}
+   * @returns {server.graphql.admin.AdminsResult}
    */
   formatResponse ({
     admins,

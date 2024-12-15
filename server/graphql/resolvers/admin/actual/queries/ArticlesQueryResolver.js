@@ -48,8 +48,8 @@ export default class ArticlesQueryResolver extends BaseQueryResolver {
    *     }
    *   }
    * }} params
-   * @param {renchanMiddleware.AdminContext} context
-   * @returns {Promise<graphqlAdmin.ArticlesResult>}
+   * @param {server.graphql.context.AdminContext} context
+   * @returns {Promise<server.graphql.admin.ArticlesResult>}
    */
   async resolve (
     {
@@ -261,7 +261,7 @@ export default class ArticlesQueryResolver extends BaseQueryResolver {
    *     totalRecords: number,
    *   }
    * }} params
-   * @returns {graphqlAdmin.ArticlesResult}
+   * @returns {server.graphql.admin.ArticlesResult}
    */
   formatResponse ({
     articles,

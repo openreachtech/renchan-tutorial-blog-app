@@ -22,8 +22,8 @@ export default class ArticleStatusesQueryResolver extends BaseQueryResolver {
    * Resolve article statuses query
    *
    * @param {object} params
-   * @param {renchanMiddleware.AdminContext} context
-   * @returns {Promise<graphqlAdmin.ArticleStatusesResult>}
+   * @param {server.graphql.context.AdminContext} context
+   * @returns {Promise<server.graphql.admin.ArticleStatusesResult>}
    */
   async resolve (
     params,
@@ -59,7 +59,7 @@ export default class ArticleStatusesQueryResolver extends BaseQueryResolver {
    * @param {{
    *   statuses: Array<model.ArticleStatus>
    * }} params
-   * @returns {graphqlAdmin.ArticleStatusesResult}
+   * @returns {server.graphql.admin.ArticleStatusesResult}
    */
   formatResponse ({
     statuses,

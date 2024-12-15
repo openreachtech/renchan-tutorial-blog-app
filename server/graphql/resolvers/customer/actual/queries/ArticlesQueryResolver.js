@@ -43,9 +43,9 @@ export default class ArticlesQueryResolver extends BaseQueryResolver {
    * Resolve articles query
    *
    * @param {{
-   *   input: graphqlCustomer.ArticlesInput
+   *   input: server.graphql.customer.ArticlesInput
    * }} params
-   * @returns {Promise<graphqlCustomer.ArticlesResult>}
+   * @returns {Promise<server.graphql.customer.ArticlesResult>}
    */
   async resolve ({
     input: {
@@ -85,7 +85,7 @@ export default class ArticlesQueryResolver extends BaseQueryResolver {
    *
    * @param {{
    *   tagIds: Array<number>,
-   *   pagination: graphqlCustomer.PaginationInput
+   *   pagination: server.graphql.customer.PaginationInput
    * }} params
    * @returns {boolean}
    */
@@ -157,7 +157,7 @@ export default class ArticlesQueryResolver extends BaseQueryResolver {
    *
    * @param {{
    *   tagIds: Array<number>,
-   *   pagination: graphqlCustomer.PaginationInput
+   *   pagination: server.graphql.customer.PaginationInput
    * }} params
    * @returns {Promise<Array<model.ArticleWithAssociationsEntity>>}
    */
@@ -232,10 +232,10 @@ export default class ArticlesQueryResolver extends BaseQueryResolver {
    *
    * @param {{
    *   articles: Array<model.ArticleWithAssociationsEntity>,
-   *   pagination: graphqlCustomer.PaginationInput,
+   *   pagination: server.graphql.customer.PaginationInput,
    *   totalRecords: number
    * }} params
-   * @returns {graphqlCustomer.ArticlesResult}
+   * @returns {server.graphql.customer.ArticlesResult}
    */
   formatResponse ({
     articles,
