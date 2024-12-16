@@ -85,7 +85,7 @@ export default class NewArticleValidator {
    * Is posted at valid?
    *
    * @param {{
-   *   postedAt?: string
+   *   postedAt?: Date
    * }} param
    * @returns {boolean}
    */
@@ -186,7 +186,7 @@ export default class NewArticleValidator {
  *   thumbnailUrl: string
  *   title: string
  *   content: string
- *   postedAt: string
+ *   postedAt: Date
  *   tagIds: Array<number>
  *   statusId: number
  * }} articleParams

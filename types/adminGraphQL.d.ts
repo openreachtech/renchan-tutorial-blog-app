@@ -33,8 +33,8 @@ declare global {
       thumbnailUrl: string
       title: string
       content: string
-      postedAt: string
-      savedAt: string
+      postedAt: DateTime
+      savedAt: DateTime
       tags: Array<Tag>
       status: StatusPhase
     }
