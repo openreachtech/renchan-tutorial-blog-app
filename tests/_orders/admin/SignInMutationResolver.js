@@ -1,8 +1,8 @@
-import '../../../../../../sequelize/_.js'
+import '../../../sequelize/_.js'
 
-import AdminAccessToken from '../../../../../../sequelize/models/AdminAccessToken.js'
-import AdminPasswordHash from '../../../../../../sequelize/models/AdminPasswordHash.js'
-import SignInMutationResolver from '../../../../../../server/graphql/resolvers/admin/actual/mutations/SignInMutationResolver.js'
+import AdminAccessToken from '../../../sequelize/models/AdminAccessToken.js'
+import AdminPasswordHash from '../../../sequelize/models/AdminPasswordHash.js'
+import SignInMutationResolver from '../../../server/graphql/resolvers/admin/actual/mutations/SignInMutationResolver.js'
 
 describe('SignInMutationResolver', () => {
   describe('#resolve()', () => {
