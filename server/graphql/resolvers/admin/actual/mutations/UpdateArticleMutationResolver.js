@@ -251,7 +251,7 @@ export default class UpdateArticleMutationResolver extends BaseMutationResolver 
   generateTransactionCallback ({
     article,
     tags,
-    savedAt = this.now
+    savedAt = this.now,
   }) {
     return async transaction => {
       // 記事本体とその関連エンティティを保存
