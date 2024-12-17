@@ -64,6 +64,9 @@ export default class Article extends RenchanModel {
     this.hasMany(this._.ArticleTag)
     this.hasOne(this._.ArticleLatestStatus)
     this.hasMany(this._.ArticleStatusPhase)
+    this.belongsToMany(this._.Tag, {
+      through: this._.ArticleTag,
+    })
   }
 
   /**
