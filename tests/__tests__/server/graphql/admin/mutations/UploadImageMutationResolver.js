@@ -51,7 +51,9 @@ describe('UploadImageMutationResolver', () => {
           const resolver = UploadImageMutationResolver.create()
 
           await expect(resolver.resolve(
-            params,
+            {
+              variables: params,
+            },
             mockContext
           ))
             .rejects
