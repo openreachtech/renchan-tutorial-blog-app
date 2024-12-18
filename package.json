@@ -33,6 +33,7 @@
   },
   "homepage": "https://github.com/openreachtech/renchan-boilerplate#readme",
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.713.0",
     "@graphql-tools/schema": "^10.0.6",
     "@graphql-tools/utils": "^10.5.5",
     "@openreachtech/mentsu-logger": "^1.1.0",
