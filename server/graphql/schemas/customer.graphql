@@ -36,27 +36,17 @@ type Query {
 
   # for scalar sample ----------------------------------------------------------
   customerAmounts: CustomerAmountsResult!
+  articles(input: ArticlesInput!): ArticlesResult!
+  article(input: ArticleInput!): Article!
 }
 
-################################################################################
-#### MUTATION
-################################################################################
-
-## !!!!!!!! Please add in dictionary order.
-
-type Mutation {
-  signIn(input: SignInInput!): AuthResult!
-  signUp(input: SignUpInput!): AuthResult!
-
-  # for furo boilerplate -------------------------------------------------------
-  uploadCustomerForumPostImage(input: UploadCustomerForumPostImageInput!): UploadCustomerForumPostImageResult!
-
-  # for subscription -----------------------------------------------------------
-  createChatRoom (input: CreateChatRoomInput!): CreateChatRoomResult!
-  sendChatMessage (input: SendMessageInput!): SendChatMessageResult!
-
-  # for scalar sample ----------------------------------------------------------
-  postAppointment (input: PostAppointmentInput!): PostAppointmentResult!
+type Article {
+  articleId: Int!
+  thumbnailUrl: String!
+  title: String!
+  content: String!
+  postedAt: DateTime!
+  tags: [Tag!]!
 }
 
 ################################################################################
@@ -112,23 +102,17 @@ type CompanySponsor {
 
 type CurriculumsResult {
   curriculums: [Curriculum!]!
+type ArticlesResult {
+  articles: [ListArticle!]!
   pagination: Pagination!
 }
 
-type Curriculum {
-  id: Int!
-  title: String!
-  description: String!
+type ListArticle {
+  articleId: Int!
   thumbnailUrl: String!
-  postedAt: String!
-}
-
-type SignUpResult {
-  sentTo: String!
-}
-
-type UploadCustomerForumPostImageResult {
-  imageUrl: String!
+  title: String!
+  postedAt: DateTime!
+  tags: [Tag!]!
 }
 
 type Pagination {
@@ -143,80 +127,22 @@ type Sort {
   orderBy: String!
 }
 
-# for subscription -----------------------------------------------------------
-
-type ChatMessagesResult {
-  messages: [ChatMessage!]!
-}
-
-type ChatRoomsResult {
-  rooms: [ChatRoom!]!
-}
-
-type SendChatMessageResult {
-  message: ChatMessage!
-}
-
-type CreateChatRoomResult {
-  rooms: [ChatRoom!]!
-}
-
-type OnReceiveMessageResult {
-  message: ChatMessage!
-}
-
-type ChatMessage {
-  id: Int! # for edit/delete
-  content: String!
-  sender: String!
-}
-
-type ChatRoom {
-  id: Int!
+type Tag {
+  tagId: Int!
   name: String!
-}
-
-# for scalar sample ------------------------------------------------------------
-
-type PostAppointmentResult {
-  appointment: Appointment!
-}
-
-type Appointment {
-  id: Int!
-  appointedAt: DateTime!
-  place: String!
-}
-
-type CustomerAmountsResult {
-  stakedAmount: BigNumber!
-  rewardsAmount: BigNumber!
 }
 
 ################################################################################
 #### INPUT
 ################################################################################
 
-## !!!!!!!! Please add in dictionary order.
-
-input SignInInput {
-  email: String!
-  password: String!
+input ArticleInput {
+  articleId: Int!
 }
 
-input SignUpInput {
-  email: String!
-  inviteCode: String!
-  password: String!
-}
-
-# for furo boilerplate ---------------------------------------------------------
-input CurriculumsSearchInput {
+input ArticlesInput {
+  tagIds: [Int!]!
   pagination: PaginationInput!
-}
-
-input UploadCustomerForumPostImageInput {
-  image: Upload!
 }
 
 input PaginationInput {
@@ -228,32 +154,4 @@ input PaginationInput {
 input SortInput {
   targetColumn: String!
   orderBy: String!
-}
-
-# for subscription -------------------------------------------------------------
-
-input ChatMessagesInput {
-  roomId: Int!
-}
-
-input CreateChatRoomInput {
-  name: String! # room name
-}
-
-input SendMessageInput {
-  roomId: Int!
-  content: String!
-  sender: String! # username
-}
-
-input OnReceiveMessageInput {
-  roomId: Int!
-}
-
-# for scalar sample ------------------------------------------------------------
-
-input PostAppointmentInput {
-  clientCustomerId: Int!
-  appointedAt: DateTime!
-  place: String!
 }

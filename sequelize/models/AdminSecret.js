@@ -1,14 +1,22 @@
 import {
-  BackupMixinModel,
   RenchanModel,
   ModelAttributeFactory,
+  BackupMixinModel,
 } from '@openreachtech/renchan-sequelize'
 
 /**
- * AdminSecret model.
+ * AdminSecret model
+ *
+ * @class AdminSecret
+ * @extends {RenchanModel}
  */
 export default class AdminSecret extends RenchanModel {
-  /** @override */
+  /**
+   * Define model attributes
+   *
+   * @param {import('sequelize').DataTypes} DataTypes - Sequelize DataTypes
+   * @returns {object} Model attributes
+   */
   static createAttributes (DataTypes) {
     const factory = ModelAttributeFactory.create(DataTypes)
 
@@ -30,42 +38,59 @@ export default class AdminSecret extends RenchanModel {
     }
   }
 
-  /** @override */
+  /**
+   * Define model options
+   *
+   * @param {import('sequelize').Sequelize} sequelizeClient - Sequelize instance
+   * @returns {object} Model options
+   */
   static createOptions (sequelizeClient) {
     return {
       ...super.createOptions(sequelizeClient),
     }
   }
 
-  /** @override */
+  /**
+   * Define model associations
+   */
   static associate () {
     super.associate?.()
 
     this.belongsTo(this._.Admin)
   }
 
-  /** @override */
+  /**
+   * Define model scopes
+   *
+   * @param {import('sequelize').Op} Op - Sequelize operator
+   */
   static defineScopes (Op) {
     super.defineScopes?.(Op)
 
     // noop
   }
 
-  /** @override */
+  /**
+   * Setup hooks
+   */
   static setupHooks () {
     super.setupHooks?.()
-
     // noop
   }
 
-  /** @override */
+  /**
+   * Define subqueries
+   */
   static defineSubqueries () {
     super.defineSubqueries?.()
-
     // noop
   }
 
-  /** @override */
+  /**
+   * Get model mixins
+   *
+   * @returns {Array} Array of mixins
+   */
   static get Mixins () {
     return [
       BackupMixinModel,
@@ -73,20 +98,11 @@ export default class AdminSecret extends RenchanModel {
   }
 
   /**
-   * get: Backup model for BackupMixinModel
+   * Get backup model for BackupMixinModel
    *
-   * @returns {typeof import('./AdminSecretsBk')} - Backup model declaration
+   * @returns {typeof import('./AdminSecretBk')} Backup model declaration
    */
   static get BackupModel () {
-    return this._.AdminSecretsBk
+    return this._.AdminSecretBk
   }
 }
-
-/**
- * @typedef {AdminSecret & {
- *   id: number
- *   AdminId: number
- *   email: string
- *   savedAt: Date
- * }} AdminSecretEntity
- */
