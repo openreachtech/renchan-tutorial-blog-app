@@ -7,9 +7,23 @@ scalar Upload
 ################################################################################
 
 ## !!!!!!!! Please add in dictionary order.
+type PaginatedCustomers {
+  data: [Customer!]!
+  total: Int!
+  page: Int!
+  limit: Int!
+  totalPages: Int!
+}
+
+input  CustomerPaginationInput {
+  page: Int
+  limit: Int
+}
 
 type Query {
   customer: Customer!
+  customerById(id: Int!): Customer!
+  customerPagination(customerPaginationInput : CustomerPaginationInput): PaginatedCustomers!
   payments: [Payment!]!
 
   # for furo boilerplate -------------------------------------------------------
@@ -65,8 +79,9 @@ type AuthResult {
 
 type Customer {
   id: Int!
-  inviteCode: String!
   username: String!
+  email: String!
+  registeredAt: String!
 
   CustomerDetail: CustomerDetail
 }
