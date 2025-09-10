@@ -4,8 +4,9 @@ import {
 import Customer from '../../../../../../sequelize/models/Customer.js';
 import CustomerBasic from '../../../../../../sequelize/models/CustomerBasic.js';
 import CustomerSecret from '../../../../../../sequelize/models/CustomerSecret.js';
+import CustomerQueryResolver from './CustomerQueryResolver.js';
 
-export default class CustomerQueryResolver extends BaseQueryResolver {
+export default class CustomerQueryByIdResolver extends BaseQueryResolver {
   /** @override */
   static get schema () {
     return 'customerById'
@@ -15,30 +16,9 @@ export default class CustomerQueryResolver extends BaseQueryResolver {
   async resolve({ variables }) {
     const { id } = variables || {};
 
-    const [customer, customerBasic, customerSecret] = await Promise.all([
-      Customer.findOne({
-        where: {
-          id : id,
-        },
-      }),
-      CustomerBasic.findOne({
-        where: {
-          CustomerId: id,
-        },
-      }),
-      CustomerSecret.findOne({
-        where: {
-          CustomerId: id,
-        },
-      }),
-    ])
-    
-    const data = {
-      id: customer.id,
-      username: customerBasic.username,
-      email: customerSecret.email,
-      registeredAt: customer.registeredAt,
-    }
+    const customer = await CustomerQueryResolver.findCustomerDetail(id);
+
+    const data = CustomerQueryResolver.formatCustomerDetail(customer);
     
     return data
    }

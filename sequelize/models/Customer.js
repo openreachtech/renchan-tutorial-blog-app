@@ -26,6 +26,8 @@ export default class Customer extends RenchanModel {
     super.associate?.()
 
     this.hasOne(this._.CustomerPasswordHash)
+    this.hasOne(this._.CustomerBasic, { foreignKey: 'CustomerId' })
+    this.hasOne(this._.CustomerSecret, { foreignKey: 'CustomerId' })
   }
 
   /** @override */
