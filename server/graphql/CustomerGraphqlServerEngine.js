@@ -41,6 +41,9 @@ export default class CustomerGraphqlServerEngine extends BaseAppGraphqlServerEng
     return [
       'companySponsors',
       'curriculums',
+      // 'customer',
+      // 'customerById',
+      // 'customerPagination',
       'signUp',
       'signIn',
 
